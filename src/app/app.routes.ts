@@ -8,6 +8,11 @@ export const routes: Routes = [
     title: 'Home',
   },
   {
+    path: 'home/:slug',
+    loadComponent: () => import('./features/home/home').then((c) => c.Home),
+    title: 'Home',
+  },
+  {
     path: 'wishlist',
     loadComponent: () => import('./features/wishlist/wishlist').then((c) => c.Wishlist),
     title: 'Wishlist',
