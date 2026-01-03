@@ -1,1 +1,50 @@
-<p>notfound works!</p>
+<div class="bg-white relative lg:py-20 min-h-screen flex items-center">
+  <div
+    class="flex flex-col items-center justify-between px-10 mx-auto max-w-7xl xl:px-5 lg:flex-row"
+  >
+    <div class="w-full bg-cover relative max-w-md lg:max-w-2xl lg:w-7/12">
+      <div class="flex items-center justify-center w-full h-full relative lg:pr-10">
+        <img
+          src="https://illustrations.popsy.co/gray/crashed-error.svg"
+          alt="404"
+          class="w-full max-w-md"
+        />
+      </div>
+    </div>
+    <div class="w-full mt-20 relative z-10 max-w-xl lg:mt-0 lg:w-5/12">
+      <div
+        class="flex flex-col items-center text-center p-10 bg-white shadow-2xl rounded-xl relative z-10"
+      >
+        <h1 class="text-7xl font-extrabold text-blue-600">404</h1>
+
+        <p class="mt-4 text-2xl font-semibold text-gray-800">Page Not Found</p>
+
+        <p class="mt-2 text-sm text-gray-500">
+          Sorry, the page you’re looking for doesn’t exist or has been moved.
+        </p>
+
+        <div class="mt-8 flex gap-4">
+          <a
+            routerLink="/home"
+            class="inline-flex cursor-pointer items-center justify-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-indigo-600 transition"
+          >
+            Go Home
+          </a>
+        </div>
+      </div>
+      <svg
+        viewBox="0 0 91 91"
+        class="absolute top-0 left-0 z-0 w-32 h-32 -mt-12 -ml-12 text-yellow-300 fill-current"
+      >
+        <circle cx="3" cy="3" r="2.7" />
+      </svg>
+
+      <svg
+        viewBox="0 0 91 91"
+        class="absolute bottom-0 right-0 z-0 w-32 h-32 -mb-12 -mr-12 text-indigo-500 fill-current"
+      >
+        <circle cx="3" cy="3" r="2.7" />
+      </svg>
+    </div>
+  </div>
+</div>

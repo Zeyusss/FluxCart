@@ -5,4 +5,5 @@ export const initStore: fluxCartStore = {
   slug: '',
   categories: ["men's-fashion", 'electronics', "women's-fashion"],
   loading: false,
+  wishlistItems: [],
 };

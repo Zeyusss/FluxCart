@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { loggedinGuard } from './core/guards/isLoggedIn/loggedin-guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,13 +25,15 @@ export const routes: Routes = [
   },
   {
     path: 'login',
+    canActivate: [loggedinGuard],
     loadComponent: () => import('./core/auth/login/login').then((c) => c.Login),
-    title: 'Sign In',
+    title: 'Login',
   },
   {
     path: 'register',
+    canActivate: [loggedinGuard],
     loadComponent: () => import('./core/auth/register/register').then((c) => c.Register),
-    title: 'Sign Up',
+    title: 'Register',
   },
   {
     path: '**',

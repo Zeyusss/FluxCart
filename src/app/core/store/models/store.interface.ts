@@ -5,4 +5,5 @@ export interface fluxCartStore {
   slug: string;
   categories: string[];
   loading: boolean;
+  wishlistItems: Product[];
 }

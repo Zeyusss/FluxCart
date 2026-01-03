@@ -3,8 +3,11 @@
 // components according to the Material 3 design spec.
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
+@use '@ngxpert/hot-toast/src/styles/styles.scss';
 @use '@angular/material' as mat;
 @import "tailwindcss";
+
+
 html {
   @include mat.theme(
     (
