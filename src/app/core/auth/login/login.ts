@@ -39,7 +39,7 @@ export class Login {
         },
         error: (err) => {
           console.log(err);
-          this.toaster.error(err);
+          this.toaster.error(err.error.message);
           this.requestLoading.update((value) => false);
         },
       });

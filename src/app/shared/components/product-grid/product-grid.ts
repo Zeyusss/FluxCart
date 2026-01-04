@@ -7,6 +7,7 @@ import { MatNavList, MatListItem, MatListItemTitle } from '@angular/material/lis
 import { fluxCartStore } from '../../../core/store/FluxCart.store';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CardSkeleton } from '../../skeletons/card-skeleton/card-skeleton';
+import { ToggleWishlistButton } from '../toggle-wishlist-button/toggle-wishlist-button';
 
 @Component({
   selector: 'app-product-grid',
@@ -20,6 +21,7 @@ import { CardSkeleton } from '../../skeletons/card-skeleton/card-skeleton';
     MatListItemTitle,
     RouterLink,
     CardSkeleton,
+    ToggleWishlistButton,
   ],
   templateUrl: './product-grid.html',
   styleUrl: './product-grid.scss',

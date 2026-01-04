@@ -13,6 +13,8 @@ export class AuthService {
   private readonly router = inject(Router);
   isLoggedIn = signal<boolean>(!!localStorage.getItem('token'));
 
+  token = signal<string | null>(localStorage.getItem('token'));
+
   registerPost(data: RegisterInterface): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(`${environment.baseUrl}/auth/signup`, data);
   }

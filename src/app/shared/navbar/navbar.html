@@ -5,8 +5,17 @@
     </button>
 
     <div class="flex item-center gap-2">
-      <button routerLink="/wishlist" matIconButton><mat-icon>favorite</mat-icon></button>
-      <button routerLink="/cart" matIconButton><mat-icon>shopping_cart</mat-icon></button>
+      <button
+        routerLink="/wishlist"
+        [matBadge]="store.wishlistCount()"
+        [matBadgeHidden]="store.wishlistCount() === 0"
+        matIconButton
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button routerLink="/cart" matIconButton>
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
 
       @if (!authService.isLoggedIn()) {
       <button routerLink="/login" matButton>Login</button>

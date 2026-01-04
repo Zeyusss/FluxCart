@@ -1,9 +1,11 @@
 import { Product } from '../../models/products/products';
+import { UserProduct } from '../../models/wishlist/wishlist';
 
 export interface fluxCartStore {
   products: Product[];
   slug: string;
   categories: string[];
   loading: boolean;
-  wishlistItems: Product[];
+  wishlistItems: UserProduct[];
+  wishlistIds: string[];
 }
