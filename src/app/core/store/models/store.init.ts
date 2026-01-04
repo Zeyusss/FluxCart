@@ -1,3 +1,4 @@
+import { CartProduct, CartResponse } from '../../models/cart/cart';
 import { fluxCartStore } from './store.interface';
 
 export const initStore: fluxCartStore = {
@@ -7,4 +8,6 @@ export const initStore: fluxCartStore = {
   loading: false,
   wishlistItems: [],
   wishlistIds: [],
+  cartData: {} as CartResponse,
+  cartItems: [],
 };

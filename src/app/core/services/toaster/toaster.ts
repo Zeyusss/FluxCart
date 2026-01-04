@@ -7,7 +7,7 @@ import { HotToastService } from '@ngxpert/hot-toast';
 export class Toaster {
   private readonly toaster = inject(HotToastService);
 
-  success(message: string) {
+  success(message: string | undefined) {
     this.toaster.success(message);
   }
   error(message: string) {

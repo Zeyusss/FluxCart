@@ -1,3 +1,4 @@
+import { CartProduct, CartResponse } from '../../models/cart/cart';
 import { Product } from '../../models/products/products';
 import { UserProduct } from '../../models/wishlist/wishlist';
 
@@ -8,4 +9,6 @@ export interface fluxCartStore {
   loading: boolean;
   wishlistItems: UserProduct[];
   wishlistIds: string[];
+  cartData: CartResponse;
+  cartItems: CartProduct[];
 }

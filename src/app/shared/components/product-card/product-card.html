@@ -21,7 +21,11 @@
     </div>
     <div class="flex items-center justify-between mt-auto">
       <span class="text-2xl font-bold text-gray-900"> ${{ product().price }} </span>
-      <button matButton="filled" class="flex item-center gap-2">
+      <button
+        (click)="store.addProductToCart(product().id)"
+        matButton="filled"
+        class="flex item-center gap-2"
+      >
         <mat-icon>shopping_cart</mat-icon>
         Add to Cart
       </button>

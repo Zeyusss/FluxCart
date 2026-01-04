@@ -11,6 +11,7 @@ import { computed, inject } from '@angular/core';
 import { Products } from '../services/products/products';
 import { Wishlist } from '../services/wishlist/wishlist';
 import { Toaster } from '../services/toaster/toaster';
+import { Cart } from '../services/cart/cart';
 
 export const fluxCartStore = signalStore(
   { providedIn: 'root' },
@@ -18,9 +19,10 @@ export const fluxCartStore = signalStore(
   withMethods(
     (
       store,
+      toaster = inject(Toaster),
       productsApi = inject(Products),
       wishlistApi = inject(Wishlist),
-      toaster = inject(Toaster)
+      cartApi = inject(Cart)
     ) => ({
       loadAllProducts() {
         patchState(store, { loading: true });
@@ -43,6 +45,7 @@ export const fluxCartStore = signalStore(
             patchState(store, {
               wishlistIds: res.data,
             });
+            this.getUserWishlist();
             toaster.success(res.message);
           },
           error: (err) => {
@@ -57,7 +60,7 @@ export const fluxCartStore = signalStore(
             patchState(store, {
               wishlistIds: res.data,
             });
-            this.getUserProductsWishlist();
+            this.getUserWishlist();
             toaster.success('Product Removed Succusfully');
           },
           error: (err) => {
@@ -66,10 +69,29 @@ export const fluxCartStore = signalStore(
           },
         });
       },
-      getUserProductsWishlist() {
+      getUserWishlist() {
         wishlistApi.getLoggedUserWishlist().subscribe({
           next: (res) => {
             patchState(store, { wishlistItems: res.data, wishlistIds: res.data.map((p) => p._id) });
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+      },
+      addProductToCart(productId: string) {
+        cartApi.addProductToCart(productId).subscribe({
+          next: (res) => {
+            console.log(res);
+            patchState(store, { cartData: res, cartItems: res.data.products });
+            toaster.success(res.message);
+          },
+        });
+      },
+      getUserCart() {
+        cartApi.getLoggedUserCart().subscribe({
+          next: (res) => {
+            patchState(store, { cartItems: res.data.products, cartData: res });
           },
           error: (err) => {
             console.log(err);
@@ -86,11 +108,13 @@ export const fluxCartStore = signalStore(
     wishlistCount: computed(() => {
       return store.wishlistIds().length;
     }),
+    cartCount: computed(() => store.cartData().numOfCartItems),
   })),
   withHooks({
     onInit: (store) => {
       store.loadAllProducts();
-      store.getUserProductsWishlist();
+      store.getUserWishlist();
+      store.getUserCart();
     },
   })
 );
