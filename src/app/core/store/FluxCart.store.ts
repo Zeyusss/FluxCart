@@ -83,7 +83,7 @@ export const fluxCartStore = signalStore(
         cartApi.addProductToCart(productId).subscribe({
           next: (res) => {
             console.log(res);
-            patchState(store, { cartData: res, cartItems: res.data.products });
+            this.getUserCart();
             toaster.success(res.message);
           },
         });
@@ -92,6 +92,35 @@ export const fluxCartStore = signalStore(
         cartApi.getLoggedUserCart().subscribe({
           next: (res) => {
             patchState(store, { cartItems: res.data.products, cartData: res });
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+      },
+      updateCartProductQuantity(productId: string, count: number) {
+        cartApi.updateCartProductQuantity(productId, count).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.getUserCart();
+          },
+        });
+      },
+      removeSpecifiCartItem(productId: string) {
+        cartApi.removeSpecificCartItem(productId).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.getUserCart();
+          },
+        });
+      },
+      clearUserCart() {
+        cartApi.clearUserCart().subscribe({
+          next: (res) => {
+            if (res.message === 'success') {
+              this.getUserCart();
+              toaster.success('Your Cart Has been Cleared');
+            }
           },
           error: (err) => {
             console.log(err);
