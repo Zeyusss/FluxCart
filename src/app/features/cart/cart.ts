@@ -5,10 +5,11 @@ import { TeaseWishlist } from './components/tease-wishlist/tease-wishlist';
 import { SummarizeOrder } from '../../shared/components/summarize-order/summarize-order';
 import { fluxCartStore } from '../../core/store/FluxCart.store';
 import { EmptyCart } from './components/empty-cart/empty-cart';
+import { MatAnchor } from '@angular/material/button';
 
 @Component({
   selector: 'app-cart',
-  imports: [BackButton, ListCartItems, TeaseWishlist, SummarizeOrder, EmptyCart],
+  imports: [BackButton, ListCartItems, TeaseWishlist, SummarizeOrder, EmptyCart, MatAnchor],
   templateUrl: './cart.html',
   styleUrl: './cart.scss',
 })

@@ -22,7 +22,7 @@
     <div class="flex items-center justify-between mt-auto">
       <span class="text-2xl font-bold text-gray-900"> ${{ product().price }} </span>
       <button
-        (click)="store.addProductToCart(product().id)"
+        (click)="authActionFacade.handleAddToCart(product().id)"
         matButton="filled"
         class="flex item-center gap-2"
       >

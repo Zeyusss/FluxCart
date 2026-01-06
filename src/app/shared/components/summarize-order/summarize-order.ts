@@ -4,7 +4,7 @@ import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-summarize-order',
-  imports: [MatButton],
+  imports: [],
   templateUrl: './summarize-order.html',
   styleUrl: './summarize-order.scss',
 })

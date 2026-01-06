@@ -17,5 +17,5 @@
       <span>$ {{ totalCartPrice() }}</span>
     </div>
   </div>
-  <button matButton="filled" class="w-full mt-6">Proceed to checkout</button>
+  <ng-content select="[actionButtons]" />
 </div>
