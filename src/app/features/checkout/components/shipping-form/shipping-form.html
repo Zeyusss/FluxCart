@@ -1,0 +1,58 @@
+<div class="border border-gray-200 rounded-xl p-6 bg-white">
+  <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+    <mat-icon>local_shipping</mat-icon>
+    Shipping Information
+  </h2>
+  <form class="grid grid-cols-1 lg:grid-cols-2 gap-4" (click)="onSubmit($event)">
+    <div class="relative">
+      <mat-form-field>
+        <input
+          [field]="shippingForm.shippingAddress.city"
+          matInput
+          type="text"
+          placeholder="City"
+        />
+      </mat-form-field>
+      @if (this.shippingForm.shippingAddress.city().invalid() &&
+      this.shippingForm.shippingAddress.city().touched()) {
+      <div class="absolute left-0 top-10 min-h-5">
+        @for (error of this.shippingForm.shippingAddress.city().errors(); track error.kind) {
+        <div class="text-sm text-red-600" role="alert">
+          <span> {{ error.message }} </span>
+        </div>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="relative">
+      <mat-form-field>
+        <input
+          matInput
+          [field]="shippingForm.shippingAddress.phone"
+          type="tel"
+          placeholder="Phone"
+        />
+      </mat-form-field>
+      @if (this.shippingForm.shippingAddress.phone().invalid() &&
+      this.shippingForm.shippingAddress.phone().touched()) {
+      <div class="absolute left-0 top-10 min-h-5">
+        @for (error of this.shippingForm.shippingAddress.phone().errors(); track error.kind) {
+        <div class="text-sm text-red-600" role="alert">
+          <span> {{ error.message }} </span>
+        </div>
+        }
+      </div>
+      }
+    </div>
+
+    <mat-form-field class="col-span-2">
+      <textarea
+        matInput
+        [field]="shippingForm.shippingAddress.details"
+        type="text"
+        placeholder="Details"
+      ></textarea>
+    </mat-form-field>
+  </form>
+</div>

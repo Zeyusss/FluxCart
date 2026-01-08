@@ -6,10 +6,19 @@ import { SummarizeOrder } from '../../shared/components/summarize-order/summariz
 import { fluxCartStore } from '../../core/store/FluxCart.store';
 import { EmptyCart } from './components/empty-cart/empty-cart';
 import { MatAnchor } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
-  imports: [BackButton, ListCartItems, TeaseWishlist, SummarizeOrder, EmptyCart, MatAnchor],
+  imports: [
+    BackButton,
+    ListCartItems,
+    TeaseWishlist,
+    SummarizeOrder,
+    EmptyCart,
+    MatAnchor,
+    RouterLink,
+  ],
   templateUrl: './cart.html',
   styleUrl: './cart.scss',
 })

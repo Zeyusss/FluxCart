@@ -24,6 +24,16 @@ export const routes: Routes = [
     title: 'Cart',
   },
   {
+    path: 'allorders',
+    loadComponent: () => import('./features/allorders/allorders').then((c) => c.Allorders),
+    title: 'AllOrders',
+  },
+  {
+    path: 'checkout/:cartId',
+    loadComponent: () => import('./features/checkout/checkout').then((c) => c.Checkout),
+    title: 'Checkout',
+  },
+  {
     path: 'login',
     canActivate: [loggedinGuard],
     loadComponent: () => import('./core/auth/login/login').then((c) => c.Login),
