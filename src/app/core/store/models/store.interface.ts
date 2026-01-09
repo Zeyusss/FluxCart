@@ -13,4 +13,5 @@ export interface fluxCartStore {
   cartData: CartResponse;
   cartItems: CartProduct[];
   userData: JwtPayload;
+  productDetails: Product;
 }

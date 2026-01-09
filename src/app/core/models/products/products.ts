@@ -46,3 +46,7 @@ export interface Metadata {
   limit: number;
   nextPage: number;
 }
+
+export interface SpecificProductResponse {
+  data: Product;
+}

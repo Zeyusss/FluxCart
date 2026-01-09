@@ -35,7 +35,11 @@
     <div class="responsive-grid">
       @if (!store.loading()) { @for (product of store.filteredProducts(); track product._id) {
       <app-product-card [product]="product">
-        <app-toggle-wishlist-button class="!absolute z-10 top-3 right-3" [product]="product" />
+        <app-toggle-wishlist-button
+          class="!absolute z-10 top-3 right-3"
+          [product]="product"
+          [style.view-transition-name]="'wishlist-button-' + product.id"
+        />
       </app-product-card>
       } }@else { @for (product of cardSkeletons; track $index) {
       <app-card-skeleton />

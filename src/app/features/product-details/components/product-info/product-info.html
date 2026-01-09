@@ -1,0 +1,42 @@
+<div class="text-xs rounded-xl bg-gray-100 px-2 py-1 w-fit mb-2">
+  {{ store.productDetails().slug | titlecase }}
+</div>
+<h1 class="text-2xl font-extrabold mb-3">{{ store.productDetails().title }}</h1>
+<app-star-rating
+  [count]="store.productDetails().ratingsQuantity"
+  [rating]="store.productDetails().ratingsAverage"
+/>
+<p class="text-3xl font-extrabold my-4">${{ store.productDetails().price }}</p>
+<app-stock-status [inStock]="store.productDetails().quantity" />
+<p class="font-semibold my-4">Description</p>
+<p class="text-gray-600 border-b border-gray-200 pb-4">{{ store.productDetails().description }}</p>
+
+<div class="flex gap-4 mb-3 border-b border-gray-200 py-4">
+  <button
+    matButton="filled"
+    class="w-2/3 flex items-center gap-2"
+    (click)="store.addProductToCart(store.productDetails().id)"
+    [disabled]="!inStock()"
+  >
+    <mat-icon>shopping_cart</mat-icon>
+    {{ inStock() ? 'Add to Cart' : 'Out of Stock' }}
+  </button>
+  <app-toggle-wishlist-button [product]="store.productDetails()" />
+  <button matIconButton>
+    <mat-icon>share</mat-icon>
+  </button>
+</div>
+<div class="pt-6 flex flex-col gap-2 text-gray-700 text-xs">
+  <div class="flex items-center gap-3">
+    <mat-icon class="small">local_shipping</mat-icon>
+    <span>Free shipping on orders over $50</span>
+  </div>
+  <div class="flex items-center gap-3">
+    <mat-icon class="small">autorenew</mat-icon>
+    <span>30-day return policy</span>
+  </div>
+  <div class="flex items-center gap-3">
+    <mat-icon class="small">shield</mat-icon>
+    <span>2-year warranty included</span>
+  </div>
+</div>

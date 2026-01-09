@@ -1,0 +1,11 @@
+<div class="flex items-center gap-1 text-yellow-500" [class]="sizeClass()">
+  @for (_ of stars().full; track $index) {
+  <mat-icon>star</mat-icon>
+  } @if (stars().half) {
+  <mat-icon>star_half</mat-icon>
+  } @for (_ of stars().empty; track $index) {
+  <mat-icon class="text-gray-300">star</mat-icon>
+  } @if (count() !== null) {
+  <span class="ml-1 text-gray-500 text-sm"> ({{ count() }}) </span>
+  }
+</div>

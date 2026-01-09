@@ -1,10 +1,12 @@
 <div
-  class="relative bg-white cursor-pointer rounded-xl shadow-lg overflow-hidden flex flex-col h-full"
+  class="relative bg-white cursor-pointer rounded-xl shadow-lg overflow-hidden flex flex-col h-full transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-xl"
 >
   <img
     [src]="product().imageCover"
     class="w-full h-[300px] object-cover rounded-t-xl"
     [alt]="product().title"
+    [routerLink]="['/product-details', product().id]"
+    [style.view-transition-name]="'product-image-' + product().id"
   />
   <ng-content></ng-content>
 
@@ -15,9 +17,9 @@
     <p class="text-sm text-gray-600 mb-4 flex-1 leading-relaxed line-clamp-3">
       {{ product().description }}
     </p>
-    <!-- add rating component -->
-    <div class="text-sm font-medium mb-4">
-      {{ product().category.slug }}
+    <app-star-rating [rating]="product().ratingsAverage" [count]="product().ratingsQuantity" />
+    <div class="text-sm font-medium my-4">
+      {{ inStock() }}
     </div>
     <div class="flex items-center justify-between mt-auto">
       <span class="text-2xl font-bold text-gray-900"> ${{ product().price }} </span>

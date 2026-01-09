@@ -29,6 +29,7 @@ export const fluxCartStore = signalStore(
       authApi = inject(AuthService)
     ) => ({
       loadAllProducts() {
+        if (store.products().length > 0) return;
         patchState(store, { loading: true });
         productsApi.getAllProducts().subscribe({
           next: (res) => {
@@ -146,6 +147,16 @@ export const fluxCartStore = signalStore(
             patchState(store, { userData: decoded });
           }
         }
+      },
+      productDetailsData(productId: string | null) {
+        productsApi.getSpecificProduct(productId).subscribe({
+          next: (res) => {
+            patchState(store, { productDetails: res.data });
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
       },
     })
   ),
