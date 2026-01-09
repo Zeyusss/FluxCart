@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { AuthService } from '../auth/auth';
-import { fluxCartStore } from '../../store/FluxCart.store';
+import { AuthService } from '../auth';
+import { fluxCartStore } from '../../../store/FluxCart.store';
 import { MatDialog } from '@angular/material/dialog';
-import { SignInDialog } from '../../../shared/components/sign-in-dialog/sign-in-dialog';
+import { SignInDialog } from '../../../../shared/components/sign-in-dialog/sign-in-dialog';
 
 @Injectable({
   providedIn: 'root',

@@ -26,7 +26,26 @@
       <button routerLink="/login" matButton>Login</button>
       <button routerLink="/register" matButton="filled">Register</button>
       }@else {
-      <button (click)="logOut()" color="warn" matButton="filled">Logout</button>
+      <button matButton class="!p-0 min-w-0 rounded-full" [matMenuTriggerFor]="userMenu">
+        <img src="/profile.webp" alt="user img" class="w-9 h-9 rounded-full object-cover" />
+      </button>
+      <mat-menu #userMenu="matMenu" xPosition="before">
+        <div class="flex flex-col px-3 min-w-[200px]">
+          <span class="text-sm font-medium"> {{ store.userData().name }} </span>
+          <span class="text-xs text-gray-500"> {{ store.userData().role }} </span>
+        </div>
+        <mat-divider></mat-divider>
+        <button mat-menu-item routerLink="/user-orders" class="!min-h-[36px]">
+          <mat-icon>receipt_long</mat-icon>
+          <span>My Orders</span>
+        </button>
+
+        <mat-divider></mat-divider>
+        <button class="!min-h-[32px]" mat-menu-item (click)="logOut()">
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
       }
     </div>
   </div></mat-toolbar

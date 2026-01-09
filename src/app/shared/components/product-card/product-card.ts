@@ -6,7 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 import { fluxCartStore } from '../../../core/store/FluxCart.store';
 import { AuthService } from '../../../core/services/auth/auth';
 import { SignInDialog } from '../sign-in-dialog/sign-in-dialog';
-import { AuthActionFacade } from '../../../core/services/auth-action-facade/auth-action-facade';
+import { AuthActionFacade } from '../../../core/services/auth/auth-action-facade/auth-action-facade';
 @Component({
   selector: 'app-product-card',
   imports: [MatButton, MatIcon],

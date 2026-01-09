@@ -12,6 +12,9 @@ import { Products } from '../services/products/products';
 import { Wishlist } from '../services/wishlist/wishlist';
 import { Toaster } from '../services/toaster/toaster';
 import { Cart } from '../services/cart/cart';
+import { CartResponse } from '../models/cart/cart';
+import { AuthService } from '../services/auth/auth';
+import { JwtPayload } from '../models/auth/auth';
 
 export const fluxCartStore = signalStore(
   { providedIn: 'root' },
@@ -22,7 +25,8 @@ export const fluxCartStore = signalStore(
       toaster = inject(Toaster),
       productsApi = inject(Products),
       wishlistApi = inject(Wishlist),
-      cartApi = inject(Cart)
+      cartApi = inject(Cart),
+      authApi = inject(AuthService)
     ) => ({
       loadAllProducts() {
         patchState(store, { loading: true });
@@ -127,6 +131,22 @@ export const fluxCartStore = signalStore(
           },
         });
       },
+      resetUserData() {
+        patchState(store, {
+          wishlistIds: [],
+          cartItems: [],
+          cartData: {} as CartResponse,
+          userData: {} as JwtPayload,
+        });
+      },
+      setUserData() {
+        if (authApi.isLoggedIn()) {
+          const decoded = authApi.decodeToken();
+          if (decoded) {
+            patchState(store, { userData: decoded });
+          }
+        }
+      },
     })
   ),
   withComputed((store) => ({
@@ -137,13 +157,14 @@ export const fluxCartStore = signalStore(
     wishlistCount: computed(() => {
       return store.wishlistIds().length;
     }),
-    cartCount: computed(() => store.cartData().numOfCartItems),
+    cartCount: computed(() => store.cartData()?.numOfCartItems ?? 0),
   })),
   withHooks({
     onInit: (store) => {
       store.loadAllProducts();
       store.getUserWishlist();
       store.getUserCart();
+      store.setUserData();
     },
   })
 );

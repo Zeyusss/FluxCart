@@ -3,7 +3,7 @@ import { Product } from '../../../core/models/products/products';
 import { fluxCartStore } from '../../../core/store/FluxCart.store';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { AuthActionFacade } from '../../../core/services/auth-action-facade/auth-action-facade';
+import { AuthActionFacade } from '../../../core/services/auth/auth-action-facade/auth-action-facade';
 
 @Component({
   selector: 'app-toggle-wishlist-button',

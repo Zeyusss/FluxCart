@@ -1,3 +1,4 @@
+import { JwtPayload } from '../../models/auth/auth';
 import { CartProduct, CartResponse } from '../../models/cart/cart';
 import { Product } from '../../models/products/products';
 import { UserProduct } from '../../models/wishlist/wishlist';
@@ -11,4 +12,5 @@ export interface fluxCartStore {
   wishlistIds: string[];
   cartData: CartResponse;
   cartItems: CartProduct[];
+  userData: JwtPayload;
 }

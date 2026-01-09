@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from './shared/navbar/navbar';
+import { AuthEffect } from './core/services/auth/auth-effect-service/auth-effect';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,5 @@ import { Navbar } from './shared/navbar/navbar';
 })
 export class App {
   protected readonly title = signal('FluxCart');
+  private readonly authEffect = inject(AuthEffect);
 }

@@ -29,6 +29,11 @@ export const routes: Routes = [
     title: 'AllOrders',
   },
   {
+    path: 'user-orders',
+    loadComponent: () => import('./features/user-orders/user-orders').then((c) => c.UserOrders),
+    title: 'My Orders',
+  },
+  {
     path: 'checkout/:cartId',
     loadComponent: () => import('./features/checkout/checkout').then((c) => c.Checkout),
     title: 'Checkout',
