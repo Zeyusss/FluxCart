@@ -6,6 +6,8 @@ import {
   AuthResponse,
   LoginInterface,
   JwtPayload,
+  resetPassword,
+  resetPasswordResponse,
 } from '../../models/auth/auth';
 import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
@@ -27,6 +29,12 @@ export class AuthService {
 
   LoginPost(data: LoginInterface): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(`${environment.baseUrl}/auth/signin`, data);
+  }
+  resetPassword(data: resetPassword): Observable<resetPasswordResponse> {
+    return this.httpClient.put<resetPasswordResponse>(
+      `${environment.baseUrl}/users/changeMyPassword`,
+      data
+    );
   }
 
   login(token: string) {

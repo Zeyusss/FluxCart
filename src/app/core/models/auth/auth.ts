@@ -30,3 +30,15 @@ export interface JwtPayload {
   iat: number;
   exp: number;
 }
+
+export interface resetPassword {
+  currentPassword: string;
+  password: string;
+  rePassword: string;
+}
+
+export interface resetPasswordResponse {
+  message: string;
+  user: User;
+  token: string;
+}

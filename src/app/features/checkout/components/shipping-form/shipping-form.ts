@@ -54,6 +54,8 @@ export class ShippingForm implements OnInit {
             this.requestLoading.update((value) => false);
           },
         });
+    } else {
+      this.requestLoading.update((value) => false);
     }
   }
 }

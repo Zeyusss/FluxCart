@@ -64,6 +64,12 @@ export const routes: Routes = [
     title: 'Forgot password',
   },
   {
+    path: 'reset-password',
+    loadComponent: () =>
+      import('./core/auth/reset-password/reset-password').then((c) => c.ResetPassword),
+    title: 'Reset password',
+  },
+  {
     path: '**',
     loadComponent: () => import('./features/notfound/notfound').then((c) => c.Notfound),
   },

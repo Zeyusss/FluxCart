@@ -7,7 +7,12 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const token = authService.token();
 
   if (token) {
-    if (req.url.includes('cart') || req.url.includes('wishlist') || req.url.includes('order')) {
+    if (
+      req.url.includes('cart') ||
+      req.url.includes('wishlist') ||
+      req.url.includes('order') ||
+      req.url.includes('changeMyPassword')
+    ) {
       req = req.clone({
         setHeaders: {
           token: token,

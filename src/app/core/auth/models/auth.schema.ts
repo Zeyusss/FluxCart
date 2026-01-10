@@ -1,5 +1,5 @@
 import { email, required, schema, validate, customError, pattern } from '@angular/forms/signals';
-import { LoginInterface, RegisterInterface } from '../../models/auth/auth';
+import { LoginInterface, RegisterInterface, resetPassword } from '../../models/auth/auth';
 
 export const registerSchema = schema<RegisterInterface>((rootPath) => {
   required(rootPath.name, { message: 'Name is Required!' }),
@@ -31,5 +31,26 @@ export const loginSchema = schema<LoginInterface>((rootPath) => {
   required(rootPath.password, { message: 'Password is Required!' }),
     pattern(rootPath.password, /^(?=.*[A-Z])(?=.*\d).{8,}$/, {
       message: 'Min 8 chars, 1 uppercase, 1 number',
+    });
+});
+
+export const resetPasswordSchema = schema<resetPassword>((rootPath) => {
+  required(rootPath.currentPassword, { message: 'Current password is Required!' }),
+    pattern(rootPath.currentPassword, /^(?=.*[A-Z])(?=.*\d).{8,}$/, {
+      message: 'Min 8 chars, 1 uppercase, 1 number',
+    }),
+    required(rootPath.password, { message: 'password is Required!' }),
+    pattern(rootPath.password, /^(?=.*[A-Z])(?=.*\d).{8,}$/, {
+      message: 'Min 8 chars, 1 uppercase, 1 number',
+    }),
+    validate(rootPath.rePassword, (ctx) => {
+      let password = ctx.valueOf(rootPath.password);
+      let rePassword = ctx.value();
+      return password === rePassword
+        ? undefined
+        : customError({
+            kind: 'Password mismatch',
+            message: 'Password do not match!',
+          });
     });
 });

@@ -31,11 +31,11 @@ export class Login {
       this.subcription.unsubscribe();
       this.subcription = this.authService.LoginPost(this.loginForm().value()).subscribe({
         next: (res) => {
+          this.requestLoading.update((value) => false);
           if (res.message === 'success') {
             this.authService.login(res.token);
             this.toaster.success('Loggedin Successfully');
             this.router.navigate(['/home']);
-            this.requestLoading.update((value) => false);
           }
         },
         error: (err) => {
@@ -44,6 +44,8 @@ export class Login {
           this.requestLoading.update((value) => false);
         },
       });
+    } else {
+      this.requestLoading.update((value) => false);
     }
   }
 }

@@ -31,8 +31,8 @@ export class Register {
       this.subscription.unsubscribe();
       this.subscription = this.authService.registerPost(this.registerForm().value()).subscribe({
         next: (res) => {
+          this.requestLoading.update((value) => false);
           if (res.message === 'success') {
-            this.requestLoading.update((value) => false);
             this.router.navigate(['/login']);
             this.toaster.success('Account Created Successfully.');
           }
@@ -43,6 +43,8 @@ export class Register {
           this.requestLoading.update((value) => false);
         },
       });
+    } else {
+      this.requestLoading.update((value) => false);
     }
   }
 }
