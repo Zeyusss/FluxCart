@@ -8,9 +8,10 @@ import { shippingSchema } from './model/shipping.schema';
 import { ActivatedRoute } from '@angular/router';
 import { Checkout } from '../../../../core/services/checkout/checkout';
 import { Subscription } from 'rxjs';
+import { FormErrors } from '../../../../shared/components/form-errors/form-errors';
 @Component({
   selector: 'app-shipping-form',
-  imports: [MatIcon, MatFormField, MatInput, Field],
+  imports: [MatIcon, MatFormField, MatInput, Field, FormErrors],
   templateUrl: './shipping-form.html',
   styleUrl: './shipping-form.scss',
 })

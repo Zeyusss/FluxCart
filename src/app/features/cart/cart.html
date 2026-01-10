@@ -1,6 +1,7 @@
-@if (store.cartCount() > 0) {
 <div class="mx-auto max-w-[1200px] py-6">
   <app-back-button class="mb-6" navigateTo="/home" label="Continue Shopping" />
+  @if (store.cartCount() > 0) {
+
   <h1 class="text-3xl font-extrabold mb-4">Shopping Cart</h1>
 
   <app-tease-wishlist class="mb-6 block" />
@@ -23,8 +24,7 @@
       </app-summarize-order>
     </div>
   </div>
+  }@else {
+  <app-empty-cart />
+  }
 </div>
-
-}@else {
-<app-empty-cart />
-}

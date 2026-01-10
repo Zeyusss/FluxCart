@@ -7,10 +7,11 @@ import { registerSchema } from '../models/auth.schema';
 import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Toaster } from '../../services/toaster/toaster';
+import { FormErrors } from '../../../shared/components/form-errors/form-errors';
 
 @Component({
   selector: 'app-register',
-  imports: [Field, RouterLink],
+  imports: [Field, RouterLink, FormErrors],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })

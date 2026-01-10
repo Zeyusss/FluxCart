@@ -57,6 +57,13 @@ export const routes: Routes = [
     title: 'Register',
   },
   {
+    path: 'forgot-password',
+    canActivate: [loggedinGuard],
+    loadComponent: () =>
+      import('./core/auth/forgot-password/forgot-password').then((c) => c.ForgotPassword),
+    title: 'Forgot password',
+  },
+  {
     path: '**',
     loadComponent: () => import('./features/notfound/notfound').then((c) => c.Notfound),
   },

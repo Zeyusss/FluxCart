@@ -1,0 +1,9 @@
+@if (control()?.invalid() && control()?.touched()) {
+<div class="absolute left-0 top-full mt-1 min-h-5">
+  @for (error of control()?.errors(); track error.kind) {
+  <div class="text-sm text-red-600" role="alert">
+    <span> {{ error.message }} </span>
+  </div>
+  }
+</div>
+}

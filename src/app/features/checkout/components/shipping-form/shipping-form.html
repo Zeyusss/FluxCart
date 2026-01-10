@@ -13,16 +13,7 @@
           placeholder="City"
         />
       </mat-form-field>
-      @if (this.shippingForm.shippingAddress.city().invalid() &&
-      this.shippingForm.shippingAddress.city().touched()) {
-      <div class="absolute left-0 top-10 min-h-5">
-        @for (error of this.shippingForm.shippingAddress.city().errors(); track error.kind) {
-        <div class="text-sm text-red-600" role="alert">
-          <span> {{ error.message }} </span>
-        </div>
-        }
-      </div>
-      }
+      <app-form-errors [control]="this.shippingForm.shippingAddress.city()" />
     </div>
 
     <div class="relative">
@@ -34,16 +25,7 @@
           placeholder="Phone"
         />
       </mat-form-field>
-      @if (this.shippingForm.shippingAddress.phone().invalid() &&
-      this.shippingForm.shippingAddress.phone().touched()) {
-      <div class="absolute left-0 top-10 min-h-5">
-        @for (error of this.shippingForm.shippingAddress.phone().errors(); track error.kind) {
-        <div class="text-sm text-red-600" role="alert">
-          <span> {{ error.message }} </span>
-        </div>
-        }
-      </div>
-      }
+      <app-form-errors [control]="this.shippingForm.shippingAddress.phone()" />
     </div>
 
     <mat-form-field class="col-span-2">

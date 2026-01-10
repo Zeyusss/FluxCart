@@ -7,10 +7,11 @@ import { loginSchema } from '../models/auth.schema';
 import { Toaster } from '../../services/toaster/toaster';
 import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { FormErrors } from '../../../shared/components/form-errors/form-errors';
 
 @Component({
   selector: 'app-login',
-  imports: [Field, RouterLink],
+  imports: [Field, RouterLink, FormErrors],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
