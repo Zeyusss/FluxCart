@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { effect, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   RegisterInterface,
@@ -8,6 +8,12 @@ import {
   JwtPayload,
   resetPassword,
   resetPasswordResponse,
+  ForgotPasswordInterFace,
+  ForgotPasswordResponse,
+  ResetCodeInterFace,
+  ResetCodeResponse,
+  ChangePasswordInterFace,
+  ChangePasswordResponse,
 } from '../../models/auth/auth';
 import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
@@ -30,9 +36,31 @@ export class AuthService {
   LoginPost(data: LoginInterface): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(`${environment.baseUrl}/auth/signin`, data);
   }
+
   resetPassword(data: resetPassword): Observable<resetPasswordResponse> {
     return this.httpClient.put<resetPasswordResponse>(
       `${environment.baseUrl}/users/changeMyPassword`,
+      data
+    );
+  }
+  // Forgot Password
+  forgotPassword(data: ForgotPasswordInterFace): Observable<ForgotPasswordResponse> {
+    return this.httpClient.post<ForgotPasswordResponse>(
+      `${environment.baseUrl}/auth/forgotPasswords`,
+      data
+    );
+  }
+
+  verifyResetCode(data: ResetCodeInterFace): Observable<ResetCodeResponse> {
+    return this.httpClient.post<ResetCodeResponse>(
+      `${environment.baseUrl}/auth/verifyResetCode`,
+      data
+    );
+  }
+
+  changePassword(data: ChangePasswordInterFace): Observable<ChangePasswordResponse> {
+    return this.httpClient.put<ChangePasswordResponse>(
+      `${environment.baseUrl}/auth/resetPassword`,
       data
     );
   }

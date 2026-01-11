@@ -42,3 +42,29 @@ export interface resetPasswordResponse {
   user: User;
   token: string;
 }
+
+export interface ForgotPasswordInterFace {
+  email: string;
+}
+
+export interface ForgotPasswordResponse {
+  statusMsg: string;
+  message: string;
+}
+
+export interface ResetCodeInterFace {
+  resetCode: string;
+}
+
+export interface ResetCodeResponse {
+  status: string;
+}
+
+export interface ChangePasswordInterFace {
+  email: string;
+  newPassword: string;
+}
+
+export interface ChangePasswordResponse {
+  token: string;
+}

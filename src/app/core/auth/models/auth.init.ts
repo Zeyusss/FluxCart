@@ -1,4 +1,11 @@
-import { LoginInterface, RegisterInterface, resetPassword } from '../../models/auth/auth';
+import {
+  ChangePasswordInterFace,
+  ForgotPasswordInterFace,
+  LoginInterface,
+  RegisterInterface,
+  ResetCodeInterFace,
+  resetPassword,
+} from '../../models/auth/auth';
 
 export const initRegisterForm: RegisterInterface = {
   name: '',
@@ -17,4 +24,17 @@ export const initResetPassword: resetPassword = {
   currentPassword: '',
   password: '',
   rePassword: '',
+};
+
+export const initForgotPassword: ForgotPasswordInterFace = {
+  email: '',
+};
+
+export const initResetCode: ResetCodeInterFace = {
+  resetCode: '',
+};
+
+export const initChangePassword: ChangePasswordInterFace = {
+  email: '',
+  newPassword: '',
 };
