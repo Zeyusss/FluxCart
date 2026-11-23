@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci || npm install --legacy-peer-deps
+      - name: Static build config
+        run: |
+          node -e "const fs=require('fs');const j=JSON.parse(fs.readFileSync('angular.json','utf8'));for(const p of Object.values(j.projects)){const o=p.architect.build.options;delete o.server;delete o.ssr;delete o.outputMode;delete o.prerender;}fs.writeFileSync('angular.json',JSON.stringify(j,null,2));"
+      - run: npx ng build --configuration production --base-href /${{ github.event.repository.name }}/
+      - id: out
+        run: |
+          OUT=$(dirname "$(find dist -name index.html -path '*browser*' | head -1)")
+          cp "$OUT/index.html" "$OUT/404.html"
+          echo "path=$OUT" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.out.outputs.path }}
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
